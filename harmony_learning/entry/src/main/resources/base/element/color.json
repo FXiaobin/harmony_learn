@@ -3,6 +3,39 @@
     {
       "name": "start_window_background",
       "value": "#127CF9"
+    },{
+      "name": "color_primary",
+      "value": "#127CF9"
+    },{
+      "name": "color_white",
+      "value": "#FFFFFF"
+    },{
+      "name": "color_black",
+      "value": "#000000"
+    },{
+      "name": "color_88BDFC",
+      "value": "#88BDFC"
+    },{
+      "name": "color_2F343A",
+      "value": "#2F343A"
+    },{
+      "name": "color_5A5F64",
+      "value": "#5A5F64"
+    },{
+      "name": "color_8D9299",
+      "value": "#8D9299"
+    },{
+      "name": "color_B1B8C1",
+      "value": "#B1B8C1"
+    },{
+      "name": "color_F5F5F5",
+      "value": "#F5F5F5"
+    },{
+      "name": "color_divider",
+      "value": "#EEF1F5"
+    },{
+      "name": "color_F72E2E",
+      "value": "#F72E2E"
     }
   ]
 }

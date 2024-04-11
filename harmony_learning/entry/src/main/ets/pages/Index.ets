@@ -11,8 +11,9 @@ struct Index {
 
       NavigationBarView({
         title: '首页',
-        // showBack: false,
-        backImageColor: Color.White,
+        titleColor: $r('app.color.color_white'),
+        showBack: false,
+        // navHeight: 56
       })
         // .backgroundColor(Color.Orange)
 
@@ -21,6 +22,7 @@ struct Index {
       Text(this.message)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
+        .fontColor($r('app.color.color_primary'))
     }
     .width('100%')
     .height('100%')
