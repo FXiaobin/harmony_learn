@@ -6,9 +6,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@maple/navigationbarview": "^1.0.5",
-    "@ohos/axios": "^2.2.0",
-    "cjcalendar": "^1.1.5",
+    "@maple/navigationbarview": "^1.0.5", // 第三方库 - 导航条
+    "@ohos/axios": "^2.2.0",  // 第三方库 - 网络请求
+    "cjcalendar": "^1.1.5",   // 第三方库 - 日历
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
