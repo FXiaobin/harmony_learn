@@ -31,6 +31,9 @@
       "name": "color_F5F5F5",
       "value": "#F5F5F5"
     },{
+      "name": "color_pageBackground",
+      "value": "#F5F5F5"
+    },{
       "name": "color_divider",
       "value": "#EEF1F5"
     },{
