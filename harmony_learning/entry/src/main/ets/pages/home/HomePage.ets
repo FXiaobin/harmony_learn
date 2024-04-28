@@ -8,7 +8,7 @@ export struct HomePage {
   // 自定义右侧搜索按钮
   @Builder navigationRight() {
     Button(){
-      Image($r('app.media.search_black')).width(20).height(20)
+      Image($r('app.media.search_white')).width(20).height(20).fillColor(Color.White)
     }
     .width(44)
     .height(44)
@@ -27,6 +27,9 @@ export struct HomePage {
       // 自定义导航提
       CustomNavigationBar({
         title: '首页',
+        titleColor: Color.White,
+        navBarColor: $r('app.color.color_primary'),
+        statusBarColor: $r('app.color.color_primary'),
         trailingBuildParam: this.navigationRight
       })
 

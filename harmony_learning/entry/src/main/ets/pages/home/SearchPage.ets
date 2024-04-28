@@ -9,10 +9,18 @@ export struct SearchPage {
     Column(){
 
       CustomNavigationBar({
+        navBarColor: $r('app.color.color_primary'),
+        statusBarColor: $r('app.color.color_primary'),
         showBack: true,
         showSearch: true,
         placeholder: '请输入电影名称',
         onSearchClick: (searchText) => {
+          if (searchText.length == 0) {
+            Prompt.showToast({
+              message: '请输入要搜索的电影名称'
+            })
+            return
+          }
           Prompt.showToast({
             message: searchText
           })

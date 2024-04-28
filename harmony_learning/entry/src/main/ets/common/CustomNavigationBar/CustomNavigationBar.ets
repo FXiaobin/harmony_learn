@@ -6,7 +6,7 @@ export struct CustomNavigationBar {
   // 状态栏高度
   private statusBarHeight = 24.0
   // 状态栏颜色
-  private statusBarColor: Color | Resource = Color.Brown
+  private statusBarColor: Color | Resource = Color.Black
 
   // 导航条高度
   private navBarHeight = 56.0
@@ -14,6 +14,8 @@ export struct CustomNavigationBar {
   private navBarColor: Color | Resource = Color.White
   // 导航条标题
   private title = '标题'
+  private titleFont = 22.0
+  private titleColor = Color.Black
 
   // 是否显示返回按钮
   private showBack = false
@@ -56,8 +58,8 @@ export struct CustomNavigationBar {
         Row({ space: 12.0 }){
 
           Text(this.title)
-            .fontColor(Color.Black)
-            .fontSize(22)
+            .fontColor(this.titleColor)
+            .fontSize(this.titleFont)
             .fontWeight(FontWeight.Medium)
         }
         .alignItems(VerticalAlign.Center)
@@ -76,7 +78,7 @@ export struct CustomNavigationBar {
           }else{
             if (this.showBack) {
               Button({type: ButtonType.Normal, stateEffect: false}) {
-                Image($r('app.media.nav_back_black')).width(24).height(24)
+                Image($r('app.media.nav_back_white')).width(24).height(24)
               }
               .backgroundColor(Color.Transparent)
               .width(44)
@@ -146,15 +148,17 @@ export struct CustomNavigationBar {
 
             if (this.showSearch) {
 
-              Button('搜索', { type: ButtonType.Normal, stateEffect: true })
+              Button('搜索', { type: ButtonType.Normal, stateEffect: false })
                 .borderRadius(8)
-                .backgroundColor(0x317aff)
+                // .backgroundColor(Color.White)
                 .fontSize(18)
+                // .fontColor($r('app.color.color_primary'))
                 // .height(40)
                 .margin({
                   right: 12.0
                 })
-                .padding(10)
+                // 设置背景时可以设置内边距
+                .padding(3)
                 .onClick(()=>{
                   console.log('+++ navigation back button click ')
 
