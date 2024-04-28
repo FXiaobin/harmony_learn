@@ -1,5 +1,12 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/home/HomePage",
+    "pages/home/SearchPage",
+    "pages/news/NewsPage",
+    "pages/skills/SkillsPage",
+    "pages/my/MyPage"
+
+
   ]
 }
