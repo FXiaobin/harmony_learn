@@ -1,12 +1,20 @@
 
+export enum MovieListType {
+  MovieListOnline,
+  MovieListComing
+}
+
+
 export class MoviesOnlineResponseResult {
 
   movieList: Array<MoviesOnlineItem>;
+  coming: Array<MoviesOnlineItem>;
   total: number;
 
   constructor() {
     this.movieList = [];
-    this.total = 0
+    this.coming = [];
+    this.total = 0;
   }
 
 }

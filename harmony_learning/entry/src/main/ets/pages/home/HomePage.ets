@@ -1,19 +1,36 @@
-import Prompt from '@system.prompt'
+
 import router from '@ohos.router'
 import { CustomNavigationBar } from '../../common/CustomNavigationBar/CustomNavigationBar'
-import http from '@ohos.net.http'
-import { MoviesOnlineItem, MoviesOnlineResponseResult } from './HomeModel'
-import Logger from '../../Utils/Logger/Logger'
+import { MovieListType } from './HomeModel'
+import { MovieListPage } from './MovieListPage'
+
+
 @Entry
 @Component
 export struct HomePage {
 
-  @State onlinData: MoviesOnlineResponseResult = null;
 
-  aboutToAppear(){
+  private  tabsController: TabsController = new TabsController()
+  @State currentIndex: number = 0
 
-    this.loadMovieListData()
+  @Builder TabBarItemBuilder(title: string, targetIndex: number, normalImg: Resource, selectedImg: Resource) {
+    Column({space: 3}) {
+      Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
+        .size({ width: 24, height: 24 })
+      Text(title)
+        .fontSize(12)
+        .fontColor(this.currentIndex === targetIndex ? $r('app.color.color_white') : $r('app.color.color_B1B8C1'))
+    }
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+    // .backgroundColor(Color.Pink)
+    .onClick(() => {
+      this.currentIndex = targetIndex;
+      this.tabsController.changeIndex(this.currentIndex);
+    })
+
   }
+
 
   // 自定义右侧搜索按钮
   @Builder navigationRight() {
@@ -47,77 +64,37 @@ export struct HomePage {
         trailingBuildParam: this.navigationRight
       })
 
+      Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
 
-      Column(){
-        // Text('HomePage')
-
-        if (this.onlinData && this.onlinData.movieList.length > 0) {
-          List(){
-            ForEach(this.onlinData.movieList, (item: MoviesOnlineItem, index: number)=>{
-
-              ListItem(){
-                Column(){
-                  Row(){
-                    Image(item.img)
-                      .width(120)
-                      .height(180)
-                      .objectFit(ImageFit.Cover)
-                      .backgroundColor(Color.Gray)
-                      .borderRadius(6)
-                      .margin({
-                        left: 12.0
-                      })
-
-                    Column(){
-                      Text('电影名称：' + item.nm).fontSize(18).fontColor($r('app.color.color_2F343A'))
-                      Text('电影评分：' + item.sc).fontSize(16).fontColor($r('app.color.color_2F343A'))
-                      Text('上映日期：' + item.comingTitle).fontSize(16).fontColor($r('app.color.color_2F343A'))
-                      Text('主演：' + item.star).fontSize(16).fontColor($r('app.color.color_2F343A'))
-                        .maxLines(2)
-                        .textOverflow({
-                          overflow: TextOverflow.Ellipsis
-                        })
-                    }
-                    .height(180)
-                    .layoutWeight(1)
-                    .justifyContent(FlexAlign.SpaceBetween)
-                    .alignItems(HorizontalAlign.Start)
-                    // .backgroundColor(Color.Orange)
-                    .margin({
-                      left: 12.0,
-                      right: 12.0
-                    })
-
-                  }
-                  .width('100%')
-                  .height(220)
-                  .backgroundColor(Color.White)
-
-                  Divider()
-                    .color($r('app.color.color_divider'))
-                    .height(1)
-                    .margin({
-                      left: 12.0
-                    })
-                }
-                // .width('100%')
-                // .margin(15.0)
-
-              }
-
-            }, (item) => item.id+'')
-
-          }
-          .width('100%')
-          .height('100%')
-          // .backgroundColor(Color.Pink)
+        TabContent(){
+          MovieListPage({
+            type: MovieListType.MovieListOnline
+          })
         }
+        .tabBar(this.TabBarItemBuilder('正在热映', 0, $r('app.media.movie_online'), $r('app.media.movie_online_sel')))
 
+        TabContent(){
+          MovieListPage({
+            type: MovieListType.MovieListComing
+          })
+        }
+        .tabBar(this.TabBarItemBuilder('即将上映', 1, $r('app.media.movie_coming'), $r('app.media.movie_coming_sel')))
 
       }
       .width('100%')
-      .layoutWeight(1)
-      // .backgroundColor(Color.Yellow)
+      .layoutWeight(1)  // 自适应剩余空间
+      .barMode(BarMode.Fixed)
+      .barWidth('100%')
+      .barHeight(50)
+      // 禁用页面滚动
+      .scrollable(false)
+      // 禁用页面滚动动画
+      // .animationDuration(0)
+      .backgroundColor($r('app.color.color_primary'))
+      .onChange((index: number) =>
+        this.currentIndex = index
+      )
+
 
 
     }
@@ -126,38 +103,5 @@ export struct HomePage {
     .backgroundColor($r('app.color.color_pageBackground'))
   }
 
-  loadMovieListData() {
-    let url = 'https://m.maoyan.com/ajax/movieOnInfoList'
-    let httpRequest = http.createHttp()
-    httpRequest.request(url, {
-      method: http.RequestMethod.GET,
-      readTimeout: 60000,
-      connectTimeout: 60000,
-      header: {
-        'Content-Type': 'application/json',
-        // !!! 模拟客户端请求，否则返回的数据时HTML而不是JSON
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
-      },
-      extraData: {}
 
-    }, (err, data) => {
-
-      if (!err) {
-        if (data.responseCode == 200) {
-          let result = `${data.result}`
-          Logger.info('===== api 222===== result = ', result)
-          let response: MoviesOnlineResponseResult = JSON.parse(result)
-          this.onlinData = response
-
-        }else{
-          Prompt.showToast({
-            message: '请求错误'
-          })
-        }
-
-      }else{
-        httpRequest.destroy()
-      }
-    })
-  }
 }
