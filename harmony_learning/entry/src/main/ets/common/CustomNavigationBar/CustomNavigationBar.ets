@@ -4,7 +4,7 @@ import router from '@ohos.router'
 export struct CustomNavigationBar {
 
   // 状态栏高度
-  private statusBarHeight = 24.0
+  private statusBarHeight = 0.0
   // 状态栏颜色
   private statusBarColor: Color | Resource = Color.Black
 
@@ -14,8 +14,13 @@ export struct CustomNavigationBar {
   private navBarColor: Color | Resource = Color.White
   // 导航条标题
   private title = '标题'
-  private titleFont = 22.0
+  private titleFont = 24.0
   private titleColor = Color.Black
+
+  // 标题默认居中
+  private  titleAlign: FlexAlign = FlexAlign.Center
+  // 标题居左时，距离左侧间距
+  private  leading = 20.0
 
   // 是否显示返回按钮
   private showBack = false
@@ -48,7 +53,8 @@ export struct CustomNavigationBar {
 
   build() {
     Column(){
-      Divider()
+      // 状态栏
+      Row()
         .backgroundColor(this.statusBarColor)
         .height(this.statusBarHeight)
         .width('100%')
@@ -61,9 +67,12 @@ export struct CustomNavigationBar {
             .fontColor(this.titleColor)
             .fontSize(this.titleFont)
             .fontWeight(FontWeight.Medium)
+            .margin({
+              left: this.titleAlign == FlexAlign.Start ? this.leading : 0.0
+            })
         }
         .alignItems(VerticalAlign.Center)
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(this.titleAlign)
         .backgroundColor(this.navBarColor)
         .height(this.navBarHeight)
         .width('100%')
