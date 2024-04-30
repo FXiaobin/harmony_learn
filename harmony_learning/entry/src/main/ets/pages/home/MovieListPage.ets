@@ -2,6 +2,7 @@ import Prompt from '@system.prompt';
 import http from '@ohos.net.http';
 import Logger from '../../Utils/Logger/Logger';
 import { MovieListType, MoviesOnlineItem, MoviesOnlineResponseResult } from './HomeModel';
+import { HttpUtils } from '../../Utils/Http/HttpUtils';
 
 
 @Component
@@ -99,42 +100,25 @@ export struct MovieListPage {
     if (this.type == MovieListType.MovieListComing) {
       url = 'https://m.maoyan.com/ajax/comingList?ci=10&token=&limit=10'
     }
-    let httpRequest = http.createHttp()
-    httpRequest.request(url, {
-      method: http.RequestMethod.GET,
-      readTimeout: 60000,
-      connectTimeout: 60000,
-      header: {
-        'Content-Type': 'application/json',
-        // !!! 模拟客户端请求，否则返回的数据时HTML而不是JSON
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
-      },
-      extraData: {}
 
-    }, (err, data) => {
-
-      if (!err) {
-        if (data.responseCode == 200) {
-          let result = `${data.result}`
-          Logger.info('===== api 222===== result = ', result)
-          let response: MoviesOnlineResponseResult = JSON.parse(result)
-          if (this.type == MovieListType.MovieListComing) {
-            this.movieList = response.coming
-          }else{
-            this.movieList = response.movieList
-          }
-
-
+    HttpUtils.GET(url, {}, (err, response, result)=>{
+      if (response.responseCode == 200) {
+        let response: MoviesOnlineResponseResult = JSON.parse(result)
+        if (this.type == MovieListType.MovieListComing) {
+          this.movieList = response.coming
         }else{
-          Prompt.showToast({
-            message: '请求错误'
-          })
+          this.movieList = response.movieList
         }
 
       }else{
-        httpRequest.destroy()
+        Prompt.showToast({
+          message: '请求错误'
+        })
       }
+
     })
+
+
   }
 
 
