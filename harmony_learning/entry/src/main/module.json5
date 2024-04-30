@@ -32,6 +32,21 @@
           }
         ]
       }
+    ],
+
+//    添加网络请求权限
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET",
+//        "reason": "网络请求数据",
+        "usedScene": {
+//          "abilities": [
+//            "FormAbility"
+//          ],
+          "when":"always"
+        }
+      },
+
     ]
   }
 }

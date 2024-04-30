@@ -4,6 +4,10 @@ import { CustomNavigationBar } from '../../common/CustomNavigationBar/CustomNavi
 @Component
 export struct SearchPage {
 
+  @Builder empty() {
+    Row()
+  }
+
   build(){
 
     Column(){
@@ -11,6 +15,9 @@ export struct SearchPage {
       CustomNavigationBar({
         navBarColor: $r('app.color.color_primary'),
         statusBarColor: $r('app.color.color_primary'),
+        leadingBuildParam: null,
+        centerBuildParam: null,
+        trailingBuildParam: null,
         showBack: true,
         showSearch: true,
         placeholder: '请输入电影名称',
