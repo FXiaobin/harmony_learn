@@ -31,4 +31,47 @@ export class MoviesOnlineItem {
   showInfo: string;
   comingTitle: string;
 
+  // 详情相关字段
+  dra: string;
+  dur: number;
+  fra: string;
+  oriLang: string;
+  photos: string[];
+  pubDesc: string;
+  shareInfo: object;
+  shortComment: object;
+  src: string;
+  vd: string;
+  videoImg: string;
+  videoName: string;
+  videourl: string;
+
+}
+
+export class MoviesDetailItem {
+
+  id: number;
+  img: string;
+  nm: string;
+  sc: number;
+  wish: number;
+  star: string;
+  rt: string;
+  showInfo: string;
+  comingTitle: string;
+
+  dra: string;
+  dur: number;
+  fra: string;
+  oriLang: string;
+  photos: string[];
+  pubDesc: string;
+  shareInfo: object;
+  shortComment: object;
+  src: string;
+  vd: string;
+  videoImg: string;
+  videoName: string;
+  videourl: string;
+
 }

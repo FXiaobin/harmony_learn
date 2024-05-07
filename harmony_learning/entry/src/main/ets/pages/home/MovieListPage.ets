@@ -3,6 +3,7 @@ import http from '@ohos.net.http';
 import Logger from '../../Utils/Logger/Logger';
 import { MovieListType, MoviesOnlineItem, MoviesOnlineResponseResult } from './HomeModel';
 import { HttpUtils } from '../../Utils/Http/HttpUtils';
+import router from '@ohos.router';
 
 
 @Component
@@ -20,7 +21,6 @@ export struct MovieListPage {
 
   build(){
     Column(){
-      // Text('HomePage')
 
       if (this.movieList && this.movieList.length > 0) {
         List(){
@@ -75,6 +75,17 @@ export struct MovieListPage {
               // .margin(15.0)
 
             }
+            .onClick(()=>{
+
+              router.pushUrl({
+                url: 'pages/home/MovieDetailPage',
+                params: {
+                  id: item.id,
+                  title: item.nm
+                }
+              })
+
+            })
 
           }, (item) => item.id+'')
 

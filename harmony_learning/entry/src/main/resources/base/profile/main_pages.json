@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/home/HomePage",
     "pages/home/SearchPage",
+    "pages/home/MovieDetailPage",
     "pages/news/NewsPage",
     "pages/skills/SkillsPage",
     "pages/my/MyPage"
