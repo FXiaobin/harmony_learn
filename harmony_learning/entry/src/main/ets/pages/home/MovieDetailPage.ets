@@ -89,7 +89,7 @@ export struct MovieDetailPage {
 
   @Builder movieInfo() {
     Row(){
-      Image(this.detailMovie.img ?? $r('app.media.tab_skills_sel'))
+      Image(this.detailMovie.img)
         .width(120)
         .height(180)
         .margin({
@@ -97,6 +97,8 @@ export struct MovieDetailPage {
         })
         .objectFit(ImageFit.Cover)
         .borderRadius(8.0)
+        .backgroundColor($r('app.color.color_divider'))
+        .alt($r('app.media.image_placeholder'))
 
       Column(){
         Text('电影名称：' + this.detailMovie.nm).fontSize(18).fontColor($r('app.color.color_2F343A'))
@@ -139,6 +141,8 @@ export struct MovieDetailPage {
               // .aspectRatio(0.8)
               .objectFit(ImageFit.Cover)
               .borderRadius(5.0)
+              .backgroundColor($r('app.color.color_divider'))
+              .alt($r('app.media.image_placeholder'))
           }
           // .backgroundColor(Color.Blue)
 

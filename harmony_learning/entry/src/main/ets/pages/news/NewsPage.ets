@@ -3,7 +3,7 @@ import { NewsListPage } from './NewsListPage'
 @Component
 export struct NewsPage {
 
-  private titles: string[] = ['推荐', '热点', '汽车', '运动', '科技', '音乐', '娱乐', '科技1', '音乐1', '娱乐1', ]
+  private titles: string[] = ['推荐', '热点', '视频', '汽车', '运动', '科技', '音乐', '娱乐', '其他']
   private tabsController = new TabsController()
   @State currentIndex: number = 0
 
@@ -43,7 +43,7 @@ export struct NewsPage {
             TabContent() {
 
               NewsListPage({
-                typeNum: this.currentIndex
+                typeNum: index
               })
 
             }
@@ -55,7 +55,7 @@ export struct NewsPage {
         .barMode(BarMode.Scrollable)
         .width('100%')
         .height('100%')
-        .backgroundColor($r('app.color.color_pageBackground'))
+        .backgroundColor(Color.White)
         .onChange((index)=>{
           this.currentIndex = index
           this.tabsController.changeIndex(index)

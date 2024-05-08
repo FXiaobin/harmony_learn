@@ -38,6 +38,8 @@ export struct MovieListPage {
                     .margin({
                       left: 12.0
                     })
+                    .backgroundColor($r('app.color.color_divider'))
+                    .alt($r('app.media.image_placeholder'))
 
                   Column(){
                     Text('电影名称：' + item.nm).fontSize(18).fontColor($r('app.color.color_2F343A'))
