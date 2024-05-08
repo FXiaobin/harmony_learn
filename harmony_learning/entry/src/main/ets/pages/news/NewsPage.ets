@@ -1,6 +1,11 @@
+import { NewsListPage } from './NewsListPage'
 @Entry
 @Component
 export struct NewsPage {
+
+  private titles: string[] = ['推荐', '热点', '汽车', '运动', '科技', '音乐', '娱乐', '科技1', '音乐1', '娱乐1', ]
+  private tabsController = new TabsController()
+  @State currentIndex: number = 0
 
   @Builder navigationTitle() {
     // 要放到Column容器组件中才会居中？？？
@@ -20,17 +25,41 @@ export struct NewsPage {
   }
 
 
+
+
   build(){
 
     Row(){
       Navigation() {
-        Column() {
-          Text('NewsPage')
+
+        Tabs({
+          barPosition: BarPosition.Start,
+          index: 0,
+          controller: this.tabsController
+        }) {
+          // Text('NewsPage')
+
+          ForEach(this.titles, (title, index) => {
+            TabContent() {
+
+              NewsListPage({
+                typeNum: this.currentIndex
+              })
+
+            }
+            .tabBar(this.tabTitle(title, index))
+
+          }, item => item)
 
         }
+        .barMode(BarMode.Scrollable)
         .width('100%')
         .height('100%')
         .backgroundColor($r('app.color.color_pageBackground'))
+        .onChange((index)=>{
+          this.currentIndex = index
+          this.tabsController.changeIndex(index)
+        })
       }
       .mode(NavigationMode.Auto)
       .width('100%')
@@ -43,6 +72,20 @@ export struct NewsPage {
     }
     .width('100%')
     .height('100%')
+  }
+
+  @Builder tabTitle(title: string, index) {
+    Text(title)
+      .fontColor(this.currentIndex == index ? $r('app.color.color_primary') : $r('app.color.color_2F343A'))
+      .fontSize(this.currentIndex == index ? 18 : 16)
+      .padding({
+        left: 10,
+        right: 10
+      })
+      .onClick(()=>{
+        this.currentIndex = index
+        this.tabsController.changeIndex(index)
+      })
   }
 
 
