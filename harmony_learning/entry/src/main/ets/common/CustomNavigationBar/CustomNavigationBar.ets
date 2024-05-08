@@ -21,6 +21,7 @@ export struct CustomNavigationBar {
   private  titleAlign: FlexAlign = FlexAlign.Center
   // 标题居左时，距离左侧间距
   private  leading = 20.0
+  private titleWidth: Length = '100%'
 
   // 是否显示返回按钮
   private showBack = false
@@ -67,6 +68,12 @@ export struct CustomNavigationBar {
             .fontColor(this.titleColor)
             .fontSize(this.titleFont)
             .fontWeight(FontWeight.Medium)
+            .maxLines(1)
+            .textOverflow({
+              overflow: TextOverflow.Ellipsis
+            })
+            .width(this.titleWidth)
+            .textAlign(this.titleAlign == FlexAlign.Start ? TextAlign.Start : TextAlign.Center)
             .margin({
               left: this.titleAlign == FlexAlign.Start ? this.leading : 0.0
             })

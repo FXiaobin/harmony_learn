@@ -1,4 +1,5 @@
 
+import router from '@ohos.router'
 import { HttpUtils } from '../../Utils/Http/HttpUtils'
 import { NewsItemModel, NewsVideoItemModel } from './NewsModel'
 @Component
@@ -102,6 +103,14 @@ export struct NewsListPage {
               bottom: BorderStyle.Solid
             }
           })
+          .onClick(()=>{
+            router.pushUrl({
+              url: 'pages/news/NewsVideoPage',
+              params: {
+                item: item
+              }
+            })
+          })
         }
       }, item => item.cid)
     }
@@ -157,6 +166,14 @@ export struct NewsListPage {
             style: {
               bottom: BorderStyle.Solid
             }
+          })
+          .onClick(()=>{
+            router.pushUrl({
+              url: 'pages/news/NewsDetailPage',
+              params: {
+                item: item
+              }
+            })
           })
         }
       }, item => item.cid)

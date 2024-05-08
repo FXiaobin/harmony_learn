@@ -5,6 +5,8 @@
     "pages/home/SearchPage",
     "pages/home/MovieDetailPage",
     "pages/news/NewsPage",
+    "pages/news/NewsVideoPage",
+    "pages/news/NewsDetailPage",
     "pages/skills/SkillsPage",
     "pages/my/MyPage"
 
