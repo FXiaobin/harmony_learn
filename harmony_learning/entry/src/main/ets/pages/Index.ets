@@ -17,7 +17,7 @@ struct Index {
         .size({ width: 24, height: 24 })
       Text(title)
         .fontSize(12)
-        .fontColor(this.currentIndex === targetIndex ? $r('app.color.color_primary') : $r('app.color.color_B1B8C1'))
+        .fontColor(this.currentIndex === targetIndex ? (targetIndex == 0 ? '#d81e06' : $r('app.color.color_primary')) : $r('app.color.color_B1B8C1'))
     }
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
@@ -36,7 +36,7 @@ struct Index {
         TabContent(){
           HomePage()
         }
-        .tabBar(this.TabBarItemBuilder('首页', 0, $r('app.media.tab_home'), $r('app.media.tab_home_sel')))
+        .tabBar(this.TabBarItemBuilder('猫眼电影', 0, $r('app.media.tab_cat'), $r('app.media.tab_cat_sel')))
 
         TabContent(){
           NewsPage()

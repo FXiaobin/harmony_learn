@@ -53,7 +53,7 @@ export struct HomePage {
     Column() {
       // 自定义导航提
       CustomNavigationBar({
-        title: '首页',
+        title: '猫眼电影',
         // titleAlign: FlexAlign.Start,
         // leading: 0,
         titleColor: Color.White,
