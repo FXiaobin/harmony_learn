@@ -76,6 +76,7 @@ export struct MyPage {
                   Button() {
                     Text('立即续费').fontColor('#3A372F').fontSize(14)
                   }
+                  .stateEffect(false)
                   .padding({
                     left: 10,
                     right: 10,
@@ -183,22 +184,27 @@ export struct MyPage {
             .width('100%')
             // .backgroundColor(Color.Brown)
             .padding(12)
+
+            // 底部加高 防止不满一屏时 滚动视图跳动
+            Row().height(100).width('100%')
+              // .backgroundColor(Color.Pink)
           }
-
+          .width('100%')
         }
-
         .scrollable(ScrollDirection.Vertical)
         .scrollBar(BarState.Auto)
         .scrollBarWidth(2.0)
         .scrollBarColor(Color.Pink)
         // .backgroundColor(Color.Orange)
         // 这两行是为了：当内容不满一屏幕时 滚动视图仍然占一屏
-        .layoutWeight(1)
+        // .layoutWeight(1)
+        .height('100%')
         .align(Alignment.Top)
         .edgeEffect(EdgeEffect.Spring)
       }
       .width('100%')
       .height('100%')
+      .justifyContent(FlexAlign.Start)
       .backgroundColor($r('app.color.color_pageBackground'))
     }
     .mode(NavigationMode.Auto)
