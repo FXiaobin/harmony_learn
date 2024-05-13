@@ -11,7 +11,7 @@ export struct CustomNavigationBar {
   // 导航条高度
   private navBarHeight = 56.0
   // 导航条颜色
-  private navBarColor: Color | Resource = Color.White
+  private navBarColor: ResourceColor = Color.White
   // 导航条标题
   private title = '标题'
   private titleFont = 24.0

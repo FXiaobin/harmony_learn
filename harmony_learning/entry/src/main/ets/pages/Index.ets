@@ -3,6 +3,7 @@ import { HomePage } from './home/HomePage'
 import { MyPage } from './my/MyPage'
 import { NewsPage } from './news/NewsPage'
 import { SkillsPage } from './skills/SkillsPage'
+import { WetherPage } from './skills/wether/WetherPage'
 
 @Entry
 @Component
@@ -44,9 +45,10 @@ struct Index {
         .tabBar(this.TabBarItemBuilder('新闻', 1, $r('app.media.tab_news'), $r('app.media.tab_news_sel')))
 
         TabContent(){
-          SkillsPage()
+          // SkillsPage()
+          WetherPage()
         }
-        .tabBar(this.TabBarItemBuilder('功能', 2, $r('app.media.tab_skills'), $r('app.media.tab_skills_sel')))
+        .tabBar(this.TabBarItemBuilder('天气', 2, $r('app.media.tab_skills'), $r('app.media.tab_skills_sel')))
 
         TabContent(){
           MyPage()

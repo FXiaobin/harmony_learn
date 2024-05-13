@@ -8,6 +8,7 @@
     "pages/news/NewsVideoPage",
     "pages/news/NewsDetailPage",
     "pages/skills/SkillsPage",
+    "pages/skills/wether/WetherPage",
     "pages/my/MyPage"
 
 

@@ -35,7 +35,7 @@ export class HttpUtils {
       connectTimeout: 60000,
       header: {
         'Token': 'BasicAuth ',
-        'Authorization': 'BasicAuth ',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjgxNTkyMGZlNWRiY2Q1ZGE0MjliNWZkZDU4MjVhMiIsInN1YiI6IjY2M2M0MDU1Njg5OWE4ZDI2YWRiMjQwNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oLMTiuvFpbWOfwXMrAZ0x3uhBgHXCtZiuK9gjpax7XE',
         'Content-Type': 'application/json',
         // !!! 模拟客户端请求，否则返回的数据时HTML而不是JSON
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
