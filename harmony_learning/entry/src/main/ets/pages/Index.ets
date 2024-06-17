@@ -34,6 +34,7 @@ struct Index {
     Column() {
 
        Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
+
         TabContent(){
           HomePage()
         }
@@ -45,8 +46,8 @@ struct Index {
         .tabBar(this.TabBarItemBuilder('新闻', 1, $r('app.media.tab_news'), $r('app.media.tab_news_sel')))
 
         TabContent(){
-          // SkillsPage()
-          WetherPage()
+          SkillsPage()
+          // WetherPage()
         }
         .tabBar(this.TabBarItemBuilder('天气', 2, $r('app.media.tab_skills'), $r('app.media.tab_skills_sel')))
 

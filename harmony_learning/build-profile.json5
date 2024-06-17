@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/huadong/.ohos/config/auto_debug_harmony_learning_com.example.harmony_learning_30086000595705720.cer",
+          "storePassword": "0000001B6B968A24E80A10F9B292490B38E02E73AC73423E475C4B6C40A555202E2548CB05320E3D47CA4D",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BAD3A41D3CE3EA9FEE0D6F34474719C8C8B8CBF5064AE63C24273994A3A14E259F013F3A545D265",
+          "profile": "/Users/huadong/.ohos/config/auto_debug_harmony_learning_com.example.harmony_learning_30086000595705720.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/huadong/.ohos/config/auto_debug_harmony_learning_com.example.harmony_learning_30086000595705720.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

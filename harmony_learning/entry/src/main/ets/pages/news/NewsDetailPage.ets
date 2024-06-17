@@ -30,6 +30,7 @@ export struct NewsDetailPage {
       Column(){
         Web({
           src: this.detailItem.url,
+          // src: 'http://192.168.106.102:8092/pxzhyy/#/pages/cyddpt/rgtg/list?menuCode=YQTGCX&finishPage=true',
           controller: this.webviewController
         })
           .imageAccess(true)

@@ -1,17 +1,17 @@
 {
+  "license": "",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.6"
+  },
+  "author": "",
   "name": "harmony_learning",
-  "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "",
-  "author": "",
-  "license": "",
+  "version": "1.0.0",
   "dependencies": {
     "@maple/navigationbarview": "^1.0.5",
     "@ohos/axios": "^2.2.0",
-    "cjcalendar": "^1.1.5",
-    "dayjs": "^1.11.7"
-  },
-  "devDependencies": {
-    "@ohos/hypium": "1.0.6"
+    "dayjs": "^1.11.7",
+    "cjcalendar": "^1.1.5"
   }
 }
