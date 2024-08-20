@@ -1,5 +1,7 @@
 import Prompt from '@system.prompt'
 import { CustomNavigationBar } from '../../common/CustomNavigationBar/CustomNavigationBar'
+import { router } from '@kit.ArkUI'
+
 @Entry
 @Component
 export struct SearchPage {
@@ -15,9 +17,9 @@ export struct SearchPage {
       CustomNavigationBar({
         navBarColor: $r('app.color.color_primary'),
         statusBarColor: $r('app.color.color_primary'),
-        leadingBuildParam: null,
-        centerBuildParam: null,
-        trailingBuildParam: null,
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
+        // trailingBuildParam: null,
         showBack: true,
         showSearch: true,
         placeholder: '请输入电影名称',
@@ -31,6 +33,9 @@ export struct SearchPage {
           Prompt.showToast({
             message: searchText
           })
+        },
+        onBackClick: () => {
+          router.back()
         }
       })
 

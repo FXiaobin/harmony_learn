@@ -5,7 +5,7 @@ import { NewsItemModel, NewsVideoItemModel } from './NewsModel'
 @Component
 export struct NewsListPage {
 
-  private typeNum: number
+  private typeNum: number = 0
   @State dataList: NewsItemModel[] = []
   @State videoList: NewsVideoItemModel[] = []
 
@@ -112,7 +112,7 @@ export struct NewsListPage {
             })
           })
         }
-      }, item => item.cid)
+      }, (item: NewsVideoItemModel) => item.vid)
     }
 
   }
@@ -176,7 +176,7 @@ export struct NewsListPage {
             })
           })
         }
-      }, item => item.cid)
+      }, (item: NewsItemModel) => item.cid)
     }
 
   }
@@ -190,9 +190,9 @@ export struct NewsListPage {
       // 视频
       url = 'https://c.m.163.com/recommend/getChanListNews?channel=T1457068979049&size=20'
     }
-    HttpUtils.GET(url, {}, (err, response, result) => {
+    HttpUtils.GET(url, null, (err, response, result) => {
       if (response.responseCode == 200) {
-        let obj = JSON.parse(result)
+        let obj: object = JSON.parse(result)
         if (this.typeNum == 2) {
           this.videoList = obj['视频']
 

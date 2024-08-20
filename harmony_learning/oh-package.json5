@@ -1,4 +1,5 @@
 {
+  "modelVersion": "5.0.0",
   "license": "",
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
@@ -9,9 +10,6 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@maple/navigationbarview": "^1.0.5",
-    "@ohos/axios": "^2.2.0",
-    "dayjs": "^1.11.7",
-    "cjcalendar": "^1.1.5"
+    "@maple/navigationbarview": "^1.0.5"
   }
 }

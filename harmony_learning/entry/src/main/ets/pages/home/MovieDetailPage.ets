@@ -11,13 +11,14 @@ export struct MovieDetailPage {
   scroller: Scroller = new Scroller();
 
   @State navTitle: string = '详情'
-  private movieId: number
+  private movieId: number = 0
 
-  @State detailMovie: MoviesOnlineItem = null
+  @State detailMovie: MoviesOnlineItem = new MoviesOnlineItem()
 
   aboutToAppear(){
-    let title = router.getParams()['title']
-    let id = router.getParams()['id']
+    let params: object = router.getParams()
+    let title: string = params['title']
+    let id: number  = params['id']
 
     this.navTitle = title
     this.movieId = id
@@ -32,9 +33,9 @@ export struct MovieDetailPage {
 
   loadDetailData() {
     let url = 'https://m.maoyan.com/ajax/detailmovie?movieId=' + this.movieId
-    HttpUtils.GET(url, {}, (error, response, result) => {
+    HttpUtils.GET(url, null, (error, response, result) => {
       // Logger.info('+++ ')
-      let obj = JSON.parse(result)
+      let obj: object = JSON.parse(result)
       let detailMovie: MoviesOnlineItem = obj['detailMovie']
       this.detailMovie = detailMovie
     })
@@ -50,9 +51,9 @@ export struct MovieDetailPage {
         titleColor: Color.White,
         navBarColor: $r('app.color.color_primary'),
         statusBarColor: $r('app.color.color_primary'),
-        leadingBuildParam: null,
-        centerBuildParam: null,
-        trailingBuildParam: null
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
+        // trailingBuildParam: null
       })
 
       Scroll(this.scroller){
@@ -132,7 +133,7 @@ export struct MovieDetailPage {
       Text('电影剧照').height(50.0).fontSize(20).fontWeight(FontWeight.Bold)
 
       Grid(){
-        ForEach(this.detailMovie.photos, url => {
+        ForEach(this.detailMovie.photos, (url: string) => {
 
           GridItem(){
             Image(url)
@@ -146,7 +147,7 @@ export struct MovieDetailPage {
           }
           // .backgroundColor(Color.Blue)
 
-        }, url => url)
+        }, (url: string) => url)
 
       }
       .height(505)

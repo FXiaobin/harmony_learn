@@ -6,12 +6,13 @@ import { NewsItemModel } from './NewsModel'
 @Component
 export struct NewsDetailPage {
 
-  @State detailItem: NewsItemModel = null
+  @State detailItem: NewsItemModel = new NewsItemModel()
 
   private webviewController = new webview.WebviewController
 
   aboutToAppear(){
-    let item = router.getParams()['item']
+    let params: object = router.getParams()
+    let item: NewsItemModel = params['item'] as NewsItemModel
     this.detailItem = item
   }
 
@@ -22,9 +23,9 @@ export struct NewsDetailPage {
         showBack: true,
         navBarColor: Color.Orange,
         titleWidth: '80%',
-        leadingBuildParam: null,
-        centerBuildParam: null,
-        trailingBuildParam: null
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
+        // trailingBuildParam: null
       })
 
       Column(){

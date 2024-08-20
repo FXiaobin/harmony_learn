@@ -39,7 +39,7 @@ export struct NewsPage {
         }) {
           // Text('NewsPage')
 
-          ForEach(this.titles, (title, index) => {
+          ForEach(this.titles, (title: string, index: number) => {
             TabContent() {
 
               NewsListPage({
@@ -49,7 +49,7 @@ export struct NewsPage {
             }
             .tabBar(this.tabTitle(title, index))
 
-          }, item => item)
+          }, (item: string) => item)
 
         }
         .barMode(BarMode.Scrollable)
@@ -74,7 +74,7 @@ export struct NewsPage {
     .height('100%')
   }
 
-  @Builder tabTitle(title: string, index) {
+  @Builder tabTitle(title: string, index: number) {
     Text(title)
       .fontColor(this.currentIndex == index ? $r('app.color.color_primary') : $r('app.color.color_2F343A'))
       .fontSize(this.currentIndex == index ? 18 : 16)

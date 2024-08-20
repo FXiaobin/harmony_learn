@@ -111,7 +111,7 @@ export struct MyPage {
 
 
             Row(){
-              ForEach(this.titles, (title, index)=>{
+              ForEach(this.titles, (title: string, index)=>{
                 Column(){
                   Image(this.pics[index]).width(32).height(32).objectFit(ImageFit.Contain)
                   Text(title).fontSize(16).fontColor($r('app.color.color_8D9299')).lineHeight(26)
@@ -123,7 +123,7 @@ export struct MyPage {
                   })
                 })
 
-              }, item => item)
+              }, (title: string) => title)
 
             }
             .justifyContent(FlexAlign.SpaceAround)
@@ -140,7 +140,7 @@ export struct MyPage {
               Column(){
                 Text('更多功能').fontSize(22).fontWeight(FontWeight.Bold).height(50.0)
 
-                ForEach(this.moreTitles, (title, index)=>{
+                ForEach(this.moreTitles, (title: string, index)=>{
                   Column(){
                     Row(){
                       Image(this.morePics[index]).width(20).height(20).objectFit(ImageFit.Contain)
@@ -162,7 +162,7 @@ export struct MyPage {
                   }
 
 
-                }, item=>item)
+                }, (title: string)=>title)
 
               }
               // 占满一行，但它外面必须套一层row时才可以使用这个属性

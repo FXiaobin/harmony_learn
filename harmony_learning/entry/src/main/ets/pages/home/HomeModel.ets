@@ -21,57 +21,57 @@ export class MoviesOnlineResponseResult {
 
 export class MoviesOnlineItem {
 
-  id: number;
-  img: string;
-  nm: string;
-  sc: number;
-  wish: number;
-  star: string;
-  rt: string;
-  showInfo: string;
-  comingTitle: string;
+  id: number = 0;
+  img: string = '';
+  nm: string = '';
+  sc: number = 0;
+  wish: number = 0;
+  star: string = '';
+  rt: string = '';
+  showInfo: string = '';
+  comingTitle: string = '';
 
   // 详情相关字段
-  dra: string;
-  dur: number;
-  fra: string;
-  oriLang: string;
-  photos: string[];
-  pubDesc: string;
-  shareInfo: object;
-  shortComment: object;
-  src: string;
-  vd: string;
-  videoImg: string;
-  videoName: string;
-  videourl: string;
+  dra?: string;
+  dur: number = 0;
+  fra?: string;
+  oriLang?: string;
+  photos?: string[];
+  pubDesc?: string;
+  shareInfo?: object;
+  shortComment?: object;
+  src?: string;
+  vd?: string;
+  videoImg?: string;
+  videoName?: string;
+  videourl?: string;
 
 }
 
 export class MoviesDetailItem {
 
-  id: number;
-  img: string;
-  nm: string;
-  sc: number;
-  wish: number;
-  star: string;
-  rt: string;
-  showInfo: string;
-  comingTitle: string;
+  id?: number;
+  img?: string;
+  nm?: string;
+  sc?: number;
+  wish?: number;
+  star?: string;
+  rt?: string;
+  showInfo?: string;
+  comingTitle?: string;
 
-  dra: string;
-  dur: number;
-  fra: string;
-  oriLang: string;
-  photos: string[];
-  pubDesc: string;
-  shareInfo: object;
-  shortComment: object;
-  src: string;
-  vd: string;
-  videoImg: string;
-  videoName: string;
-  videourl: string;
+  dra?: string;
+  dur?: number;
+  fra?: string;
+  oriLang?: string;
+  photos?: string[];
+  pubDesc?: string;
+  shareInfo?: object;
+  shortComment?: object;
+  src?: string;
+  vd?: string;
+  videoImg?: string;
+  videoName?: string;
+  videourl?: string;
 
 }

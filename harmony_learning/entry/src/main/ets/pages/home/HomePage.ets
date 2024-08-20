@@ -59,8 +59,8 @@ export struct HomePage {
         titleColor: Color.White,
         navBarColor: $r('app.color.color_primary'),
         statusBarColor: $r('app.color.color_primary'),
-        leadingBuildParam: null,
-        centerBuildParam: null,
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
         trailingBuildParam: this.navigationRight
       })
 

@@ -5,12 +5,13 @@ import { NewsVideoItemModel } from './NewsModel'
 @Component
 export struct NewsVideoPage {
 
-  @State detailItem: NewsVideoItemModel = null
+  @State detailItem: NewsVideoItemModel = new NewsVideoItemModel()
 
   private controller: VideoController = new VideoController()
 
   aboutToAppear(){
-    let item = router.getParams()['item']
+    let params: object = router.getParams()
+    let item: NewsVideoItemModel = params['item']
     this.detailItem = item
   }
 
@@ -21,9 +22,9 @@ export struct NewsVideoPage {
         showBack: true,
         navBarColor: Color.Orange,
         titleWidth: '80%',
-        leadingBuildParam: null,
-        centerBuildParam: null,
-        trailingBuildParam: null
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
+        // trailingBuildParam: null
       })
 
       Column(){

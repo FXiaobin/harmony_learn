@@ -26,7 +26,8 @@ export struct CustomNavigationBar {
   // 是否显示返回按钮
   private showBack = false
   // 返回按钮 - 点击事件
-  onBackClick: () => void
+  onBackClick: () => void = () => {
+  }
 
   // 是否显示搜索框
   private showSearch = false
@@ -37,11 +38,14 @@ export struct CustomNavigationBar {
   // 搜索框-背景颜色
   private textInputColor = $r('app.color.color_F5F5F5')
   // 搜索按钮-点击事件
-  onSearchClick: (searchText: string) => void
+  onSearchClick: (searchText: string) => void = () => {
+  }
   // 搜索输入框内容改变事件
-  onChange: (searchText: string) => void
+  onChange: (searchText: string) => void = () => {
+  }
   // 搜索输入框内容提交事件
-  onSubmit: () => void
+  onSubmit: () => void = () => {
+  }
 
   // 左侧自定义组件
   @BuilderParam leadingBuildParam?: () => void

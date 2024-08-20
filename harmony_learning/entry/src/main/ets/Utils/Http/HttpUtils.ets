@@ -7,41 +7,54 @@ import Logger from '../Logger/Logger'
 export class HttpUtils {
 
   // GET请求
-  static GET(url: string, params: object, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
-    HttpUtils.request(url, params, http.RequestMethod.GET, {}, callback)
+  static GET(url: string, params: Object | null, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
+    HttpUtils.request(url, params, http.RequestMethod.GET, null, callback)
   }
 
   // POST请求
-  static POST(url: string, params: object, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
-    HttpUtils.request(url, params, http.RequestMethod.POST, {}, callback)
+  static POST(url: string, params: Object | null, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
+    HttpUtils.request(url, params, http.RequestMethod.POST, null, callback)
   }
 
   // DELETE请求
-  static DELETE(url: string, params: object, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
-    HttpUtils.request(url, params, http.RequestMethod.DELETE, {}, callback)
+  static DELETE(url: string, params: Object | null, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
+    HttpUtils.request(url, params, http.RequestMethod.DELETE, null, callback)
   }
 
   // PUT请求
-  static PUT(url: string, params: object, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
-    HttpUtils.request(url, params, http.RequestMethod.PUT, {}, callback)
+  static PUT(url: string, params: Object | null, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
+    HttpUtils.request(url, params, http.RequestMethod.PUT, null, callback)
   }
 
   // 公共请求
-  static request(url: string, params: object, method: http.RequestMethod, header: object, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
+  static request(url: string, params: Object | null, method: http.RequestMethod, header: object | null, callback: (error: Error, response: http.HttpResponse, result: string)=>void) {
     let httpRequest = http.createHttp()
-    httpRequest.request(url, {
-      method: method ?? http.RequestMethod.GET,
-      readTimeout: 60000,
-      connectTimeout: 60000,
-      header: {
+    let commonHeader: Object = Object(
+      {
         'Token': 'BasicAuth ',
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjgxNTkyMGZlNWRiY2Q1ZGE0MjliNWZkZDU4MjVhMiIsInN1YiI6IjY2M2M0MDU1Njg5OWE4ZDI2YWRiMjQwNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oLMTiuvFpbWOfwXMrAZ0x3uhBgHXCtZiuK9gjpax7XE',
         'Content-Type': 'application/json',
         // !!! 模拟客户端请求，否则返回的数据时HTML而不是JSON
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-        ...header
-      },
-      extraData: params ?? {}
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
+      }
+    )
+
+    httpRequest.request(url, {
+      method: method ?? http.RequestMethod.GET,
+      readTimeout: 60000,
+      connectTimeout: 60000,
+      header: commonHeader,
+
+
+      // {
+      //   'Token': 'BasicAuth ',
+      //   'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjgxNTkyMGZlNWRiY2Q1ZGE0MjliNWZkZDU4MjVhMiIsInN1YiI6IjY2M2M0MDU1Njg5OWE4ZDI2YWRiMjQwNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oLMTiuvFpbWOfwXMrAZ0x3uhBgHXCtZiuK9gjpax7XE',
+      //   'Content-Type': 'application/json',
+      //   // !!! 模拟客户端请求，否则返回的数据时HTML而不是JSON
+      //   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+      //   // ...header
+      // },
+      extraData: params
 
     }, (err, data) => {
       Logger.info('===== 【HttpUtils request】: url = ', url)

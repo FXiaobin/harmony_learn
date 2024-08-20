@@ -89,7 +89,7 @@ export struct MovieListPage {
 
             })
 
-          }, (item) => item.id+'')
+          }, (item: MoviesOnlineItem) => item.id+'')
 
         }
         .width('100%')
@@ -114,7 +114,7 @@ export struct MovieListPage {
       url = 'https://m.maoyan.com/ajax/comingList?ci=10&token=&limit=10'
     }
 
-    HttpUtils.GET(url, {}, (err, response, result)=>{
+    HttpUtils.GET(url, null, (err, response, result)=>{
       if (response.responseCode == 200) {
         let response: MoviesOnlineResponseResult = JSON.parse(result)
         if (this.type == MovieListType.MovieListComing) {

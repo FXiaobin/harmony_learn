@@ -9,7 +9,7 @@ import { WetherDayModel, WetherHourModel, WetherResponseModel, WetherResultModel
 @Component
 export struct WetherPage {
 
-  @State wetherResModel: WetherResultModel = null
+  @State wetherResModel: WetherResultModel | undefined = undefined
 
   @State rotateAngle: number = 0
 
@@ -26,9 +26,9 @@ export struct WetherPage {
     this.getDateWith('')
 
     let url = 'https://api.oioweb.cn/api/weather/weather'
-    HttpUtils.GET(url, {
+    HttpUtils.GET(url, Object({
       'city_name': '昆山市'
-    }, (err, response, result) => {
+    }), (err, response, result) => {
       this.isNeedRefresh = true
       let res: WetherResponseModel = JSON.parse(result)
       this.wetherResModel = res.result
@@ -68,8 +68,8 @@ export struct WetherPage {
         titleColor: Color.White,
         // showBack: true,
         navBarColor: '#FF384A66',
-        leadingBuildParam: null,
-        centerBuildParam: null,
+        // leadingBuildParam: null,
+        // centerBuildParam: null,
         trailingBuildParam: this.refreshButton
       })
 
@@ -103,7 +103,7 @@ export struct WetherPage {
     .backgroundColor($r('app.color.color_pageBackground'))
   }
 
-  getWindName(code: string){
+  getWindName(code: string = ''){
     let codeArr = code.split('')
     let reversCodeArr = codeArr.reverse()
     let name = ''
@@ -124,7 +124,7 @@ export struct WetherPage {
     return name + '风'
   }
 
-  getWindLeveName(level: string): string {
+  getWindLeveName(level: string = ''): string {
     let num = parseFloat(level)
     let name = ''
     if (num < 1) {
@@ -157,7 +157,7 @@ export struct WetherPage {
     return name
   }
 
-  getConditionIcon(condition: string) {
+  getConditionIcon(condition: string = '') {
     if (condition.includes('小雨')) {
       return $r('app.media.tianqi_xiaoyu')
     }else if (condition.includes('中雨')) {
@@ -211,7 +211,7 @@ export struct WetherPage {
       // Row(){}.width('100%').height(50).backgroundColor(Color.Gray)
 
       Row(){
-        Text(this.wetherResModel.current_temperature.toString()).fontColor(Color.White).fontSize(62).fontWeight(FontWeight.Medium)
+        Text((this.wetherResModel!.current_temperature ?? 0).toString()).fontColor(Color.White).fontSize(62).fontWeight(FontWeight.Medium)
         Column(){
           Text('℃').fontColor($r('app.color.color_B1B8C1')).fontSize(16)
           Text('体感19℃').fontColor($r('app.color.color_B1B8C1')).fontSize(8).maxLines(2)
@@ -223,9 +223,9 @@ export struct WetherPage {
       // .backgroundColor(Color.Blue)
 
 
-      Text(this.wetherResModel.current_condition + '  ' + this.wetherResModel.low_temperature + '~' + this.wetherResModel.high_temperature + '℃')
+      Text(this.wetherResModel!.current_condition + '  ' + this.wetherResModel!.low_temperature + '~' + this.wetherResModel!.high_temperature + '℃')
         .fontColor(Color.White).fontSize(16).fontWeight(FontWeight.Medium).padding(5)
-      Text(this.wetherResModel.tips).fontColor(Color.White).fontSize(13)
+      Text(this.wetherResModel!.tips).fontColor(Color.White).fontSize(13)
     }
     .width('100%')
     .padding(10)
@@ -236,7 +236,7 @@ export struct WetherPage {
   @Builder hourWetherList() {
     Column(){
       List({space: 3.0}){
-        ForEach(this.wetherResModel.hourly_forecast, (item: WetherHourModel, index) => {
+        ForEach(this.wetherResModel!.hourly_forecast, (item: WetherHourModel, index) => {
           ListItem(){
             Column(){
               Text(item.temperature+'℃').textAlign(TextAlign.Center).fontSize(index==0?16.0:12.0).height(30.0)
@@ -251,7 +251,7 @@ export struct WetherPage {
             // .backgroundColor(Color.Pink)
           }
 
-        }, item => JSON.stringify(item))
+        }, (item: WetherHourModel)  => JSON.stringify(item))
 
       }
       .width('100%')
@@ -267,11 +267,11 @@ export struct WetherPage {
     Column(){
 
       List({space: 5.0}){
-        ForEach(this.wetherResModel.forecast_list, (item: WetherDayModel, index) => {
+        ForEach(this.wetherResModel!.forecast_list, (item: WetherDayModel, index) => {
           ListItem(){
             Row(){
               Row(){
-                Text(item.date.substring(5).replace('-', '/')).width(60).textAlign(TextAlign.Center).fontSize(12.0)
+                Text((item.date ?? '').substring(5).replace('-', '/')).width(60).textAlign(TextAlign.Center).fontSize(12.0)
                 // Text('今天').width(40).textAlign(TextAlign.Center).fontSize(12.0)
               }
 
@@ -287,7 +287,7 @@ export struct WetherPage {
             .justifyContent(FlexAlign.SpaceBetween)
             .padding(5.0)
           }
-        }, item => JSON.stringify(item))
+        }, (item: WetherDayModel) => JSON.stringify(item))
       }
 
     }
